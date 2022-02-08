@@ -13,3 +13,6 @@ A user should be able to search for an SRC user or game
 A user should be able to add a game or user to their favorites
 The favorites tab should be updating to show the latest runs in either your favorite games or favorite uses
 A user should be able to share runs on a social media platform
+
+# The Website
+https://picks6.github.io/speedrun-spectator-DevZ/
