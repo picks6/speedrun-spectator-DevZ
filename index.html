@@ -9,35 +9,52 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Wheel of Fortune</title>
+    <title>Speedrun Spectator</title>
   </head>
 
   <body>
     <header class="jumbotron">
-      <h1>Welcome to Wheel of Fortune</h1>  
-      <div class = 'subhead-text'> America's favorite game, in your browser! </div>  
+      <h1>The Speedrun Spectator</h1>  
+      <div class = 'subhead-text'> The only page fast enough to track your favorite runners </div>  
     </header>
 <main>
-<div id ='top-container' class = 'top-container'>
-    <div id = "recent-puzzles" class="col-3 recent-puzzles"> 
-        <h2>Recent Puzzles</h2>
-    </div>    
-    <div id = "current-puzzle" class = "col-6 current-puzzle">
-        <h2>Current Puzzle</h2>
+  <div id = "description" class ="description col-12">
+  <div id = "speedrun-intro" class = "intro col-4">
+  <h2 class="text-center">What is speedrunning?</h2>
+  <p>Speedrunning is when an individual attempts to beat part or all of a video game as quickly as possible. This can include individual levels, specific objectives, or unique limitations as decided by the community or player. Players must master tricks, optimize movement, and react quickly to improve their times and try to move up the leaderboards or potentially hold a world record someday.</p>
+  </div>
+  <div id ="whyspeedrun" class = "why col-4">
+  <h2>Why Speedrun?</h2>
+  <p> Speedrunning is about community, competition and a desire to be better than you were the day before. Through the advent of websites like SRL and now RT.gg, runners are now able to compete not just against themselves, but against competitiors all around the world.</p>
+  </div>  
+  <div id ="boring" class = "why col-4">
+    <h2 class ='text-center'>How do I watch?</h2>
+    <p>Through the advent of websites like SRL and <a target="blank" href="racetime.gg"> racetime</a>, players from all over the world can meet and compete in a variety of categories. Using Speedrun Spectator, we can find active races for the categories that interest you, discover a new favorite speedgame, as well as give you the ability to track your favorite runner's performance against their peers. Speedrun spectator is the only website fast enough to keep up with all your favorite players!</p>
     </div>
-    <div id = "high-scores" class = "col-3 high-scores">
-        <h2>High Scores</h2>
-    </div>
-</div>    
-<div id = "wheel" class="wheel col-6 justify-content-space-around"> This is the wheel </div>
-<div id = 'bottom-container' class='bottom-container'>
-    <div id = 'score-box' class = 'col-2 scorebox'>
-        Current Score: 
-    </div>
-    <div id = 'available keys' class ='col-8 keyboard'> Keyboard box</div>
-    <div id = 'buy-vowel' class = 'vowel-container'> <button id = 'vowelBtn' class = 'btn btn-primary'> Buy a Vowel </button></div>
+  </div>
+  <div id = "search-field" class = "col-3 search-field">
+    <h2>Search</h2> <br>
+    <div id="multisearch"  class = "mx-2" onkeydown="javascript:if (event.keyCode == 13) submitSearch();"><input id="search_txt" title="Enter search words" type="text" name="k" maxlength="200" />
+      <br>
+      <label for="users">
+      <input id="users" type="radio" name="radio" value="https://www.speedrun.com/api/v1/users?name="/>
+      Users
+      </label>
+      <label for="games">
+      <input id="games" type="radio" name="radio" value="https://www.speedrun.com/api/v1/games?name=">
+      Games</label></div>
+      <a name="" href="#" type="submit" value="go" class="btnPrimary" alt="Search" onclick="submitSearch();">Search</a>
 </div>
-</main>
+<div id ='top-container' class = 'top-container'>
+<div id = "search-results" class="col-9 search-results"> 
+        <h2>Search Results</h2>
+    </div>    
+    <div id = "favorites" class = "col-3 favorite-runners">
+        <h2>My favorites</h2>
+    </div>
+  </div>  
+</div>    
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
