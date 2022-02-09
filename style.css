@@ -45,7 +45,7 @@ body
     background-color: lightgray;
 }
 
-.recent-puzzles
+.active-cats
 {
     position: relative;
     display: flex;
@@ -53,31 +53,33 @@ body
     height: 50vh;
 }
 
-.current-puzzle
+.search-field
 {
     position: relative;
     display: flex;
-    border: 2px solid black;
-    height: 20vh
+    flex-direction: row;
 }
 
-.wheel
+.search-results
 {
     height: 50vh;
     border: 2px solid black;
     justify-content: center;
-    margin-left:25%;
-    margin-top: -30vh;
+   
     
 }
 
-.high-scores{
+.favorite-runners{
     position: relative;
     display: flex;
     border: 2px solid black;
     height: 50vh
 }
 
+.description{
+    display: flex;
+    flex-direction: row;
+}
 
 .jumbotron {
     text-align: center;
@@ -85,12 +87,11 @@ body
     border-radius: 0;
     border-bottom: 10px solid black;
     color: white;
-    height: 60vh;
+    height: 40vh;
     position: relative;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(315deg, #0abcf9 0%, #2c69d1 74%);
-    background: url("https://appwalkthrough.com/wp-content/uploads/2019/09/wheeloffortune-1024x576.jpg");
+    background: linear-gradient(315deg, #009a9a 0%, teal 74%);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -102,13 +103,13 @@ h1{
     font-weight: bolder;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: relative;
-    font-size: 48px;
+    font-size: 48px; 
 }
 .subhead-text
   {
       position:absolute;
       bottom: 20px;
-      left: 10px;
+      right: 10px;
       font-weight: bold;
       font-style: italic;
       text-shadow: 12px, 12px, gray;
