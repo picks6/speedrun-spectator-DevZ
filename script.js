@@ -39,7 +39,7 @@ var arrayID = [];
 var searchArrayReturn = [];
 var userName = "";
 var gameID;
-const runObject = {
+var runObject = {
     name: "",
     game: "",
     place: "",
@@ -73,8 +73,9 @@ function userInfoFetch(url) {
           runObject.time = userData.data[i].run.times.primary_t;
           runObject.run_link = userData.data[i].run.weblink;
           searchArrayReturn.push(runObject);
+          return searchArrayReturn;
       };
-      console.log(searchArrayReturn);
+      console.log(searchArrayReturn)
     //  newFetchUrl = "https://www.speedrun.com/api/v1/users/"+userId+"/personal-bests";
     })
     console.log(newFetchUrl);
