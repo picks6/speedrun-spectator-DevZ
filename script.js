@@ -38,14 +38,7 @@ var arrayVariable = [];
 var arrayID = [];
 var searchArrayReturn = [];
 var userName = "";
-var gameID;
-var runObject = {
-    name: "",
-    game: "",
-    place: "",
-    time: "",
-    run_link: "",
-};
+var gameID = '';
 var urlTest = '';
 
 function makeSearchUrlUser () {
@@ -61,27 +54,38 @@ function userInfoFetch(url) {
     console.log("User data is here:")
     console.log(userData); 
     for(i=0; i<userData.data.length; i++){
-          //gameID = userData.data[i].run.game;
-          //console.log(gameID);
-          //gameFetchURL = "https://www.speedrun.com/api/v1/games/"+gameID;
-          // urltest.substring(25, urltest.indexOf('/run'))
-          //  findGameName(gameFetchURL);
-          urlTest = userData.data[i].run.weblink;
-          runObject.name = userName;
-          runObject.game = urlTest.substring(25, urlTest.indexOf('/run'))
-          runObject.place = userData.data[i].place;
-          runObject.time = userData.data[i].run.times.primary_t;
-          runObject.run_link = userData.data[i].run.weblink;
-          searchArrayReturn.push(runObject);
-          return searchArrayReturn;
+        //gameID = userData.data[i].run.game;
+        //console.log(gameID);
+        //gameFetchURL = "https://www.speedrun.com/api/v1/games/"+gameID;
+        // urltest.substring(25, urltest.indexOf('/run'))
+        //  findGameName(gameFetchURL);
+        urlTest = userData.data[i].run.weblink;
+
+        var runObject = {
+          name: "",
+          game: "",
+          place: "",
+          time: "",
+          run_link: "",
       };
-      console.log(searchArrayReturn)
-    //  newFetchUrl = "https://www.speedrun.com/api/v1/users/"+userId+"/personal-bests";
-    })
+        
+        runObject.name = userName;
+        runObject.game = urlTest.substring(25, urlTest.indexOf('/run'))
+        runObject.place = userData.data[i].place;
+        runObject.time = userData.data[i].run.times.primary_t;
+        runObject.run_link = urlTest;
+        
+        // console.log('urlTest:', urlTest)
+        // console.log('runObject value:', runObject)
+        // console.log('runObject.run_link in for loop:', runObject.run_link)
+        searchArrayReturn.push(runObject);
+        console.log('in for loop:', searchArrayReturn);
+    };
     console.log(newFetchUrl);
     console.log("All processes complete.");
   return;
-};
+});
+}
 
 
 function findUser(url) {
