@@ -36,15 +36,18 @@ var arrayGame = [];
 var arrayRun = [];
 var arrayVariable = [];
 var arrayID = [];
-var searchArrayReturn = [];
+var buildArray = [];
+var searchArrayReturn = []
 var userName = "";
 var gameID = '';
 var urlTest = '';
+var gameName = '';
 
 function makeSearchUrlUser () {
   url = preSearchUrlUser + "/" + humanInputUser;
 };
 function userInfoFetch(url) {
+    searchArrayReturn = [];
     fetch(url)
     .then(function (response) {
     return response.json();
@@ -53,12 +56,13 @@ function userInfoFetch(url) {
     userData = data;
     console.log("User data is here:")
     console.log(userData); 
+    var buildArray = [];
     for(i=0; i<userData.data.length; i++){
-        //gameID = userData.data[i].run.game;
+        gameID = userData.data[i].run.game;
         //console.log(gameID);
-        //gameFetchURL = "https://www.speedrun.com/api/v1/games/"+gameID;
+        gameFetchURL = "https://www.speedrun.com/api/v1/games/"+gameID;
         // urltest.substring(25, urltest.indexOf('/run'))
-        //  findGameName(gameFetchURL);
+        
         urlTest = userData.data[i].run.weblink;
 
         var runObject = {
@@ -67,20 +71,23 @@ function userInfoFetch(url) {
           place: "",
           time: "",
           run_link: "",
-      };
-        
+        };
         runObject.name = userName;
-        runObject.game = urlTest.substring(25, urlTest.indexOf('/run'))
+        //runObject.game =  gameName //urlTest.substring(25, urlTest.indexOf('/run'))
         runObject.place = userData.data[i].place;
         runObject.time = userData.data[i].run.times.primary_t;
         runObject.run_link = urlTest;
+        //console.log(gameName);
         
+      
+        findGameName(runObject, gameFetchURL);
         // console.log('urlTest:', urlTest)
         // console.log('runObject value:', runObject)
         // console.log('runObject.run_link in for loop:', runObject.run_link)
-        searchArrayReturn.push(runObject);
-        console.log('in for loop:', searchArrayReturn);
+        buildArray.push(runObject);
     };
+    searchArrayReturn = buildArray;
+    console.log(searchArrayReturn);
     console.log(newFetchUrl);
     console.log("All processes complete.");
   return;
@@ -112,23 +119,16 @@ function findUser(url) {
       });
   };
 
-// This doesnt work lol  
-//   function findGameName(url){
-//       fetch(url)
-//         .then(function (response){
-//             return response.json();
-//         })
-//         .then (function(data) {
-//             gameData = data;
-//             console.log(gameData.data.names.international);
-//             for(j=0; j<userData.data.length; j++){
-//                 runObject.name = userName;
-//                 runObject.game = gameData.data.names.international;
-//                 runObject.place = userData.data[j].place;
-//                 runObject.time = userData.data[j].run.times.primary_t;
-//                 runObject.run_link = userData.data[j].run.weblink;
-//                 searchArrayReturn.push(runObject);
-//             };
-//         console.log(searchArrayReturn);    
-//         });
-//   }
+ 
+  function findGameName(object, url){
+      fetch(url)
+        .then(function (response){
+            return response.json();
+        })
+        .then (function(data) {
+            gameData = data;
+            object.game = (gameData.data.names.international);
+            console.log(gameName);
+           // searchArrayReturn.push(object)
+        });
+  }
