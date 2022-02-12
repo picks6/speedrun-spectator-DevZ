@@ -75,12 +75,13 @@ function userInfoFetch(url) {
         runObject.name = userName;
         //runObject.game =  gameName //urlTest.substring(25, urlTest.indexOf('/run'))
         runObject.place = userData.data[i].place;
-        runObject.time = userData.data[i].run.times.primary_t;
+        //runObject.time = userData.data[i].run.times.primary_t;
         runObject.run_link = urlTest;
         //console.log(gameName);
         
       
         findGameName(runObject, gameFetchURL);
+        toTime(runObject, userData.data[i].run.times.primary_t)
         // console.log('urlTest:', urlTest)
         // console.log('runObject value:', runObject)
         // console.log('runObject.run_link in for loop:', runObject.run_link)
@@ -93,6 +94,8 @@ function userInfoFetch(url) {
   return;
 });
 }
+
+
 
 
 function findUser(url) {
@@ -132,3 +135,16 @@ function findUser(url) {
            // searchArrayReturn.push(object)
         });
   }
+
+function toTime(object, seconds){
+    var retime = ''
+    var date = new Date(null);
+    date.setSeconds(seconds);
+    retime = date.toISOString().substr(11, 8);
+    if(retime.substr(0,3) == '00:'){
+      retime2 = retime.substr(3,retime.length)
+      object.time = retime2
+    }
+    else object.time = retime 
+    
+  }  
