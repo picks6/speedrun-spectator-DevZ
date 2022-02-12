@@ -58,21 +58,24 @@ function userInfoFetch(url) {
     console.log(userData); 
     var buildArray = [];
     for(i=0; i<userData.data.length; i++){
-        gameID = userData.data[i].run.game;
+      gameID = userData.data[i].run.game;
         //console.log(gameID);
-        gameFetchURL = "https://www.speedrun.com/api/v1/games/"+gameID;
+      gameFetchURL = "https://www.speedrun.com/api/v1/games/"+gameID;
         // urltest.substring(25, urltest.indexOf('/run'))
         
-        urlTest = userData.data[i].run.weblink;
+      urlTest = userData.data[i].run.weblink;
+      catID =  userData.data[i].run.category
+      fetchCatUrl = "https://www.speedrun.com/api/v1/categories/"+catID;
 
-        var runObject = {
-          name: "",
-          game: "",
-          place: "",
-          time: "",
-          run_link: "",
-        };
-        runObject.name = userName;
+      var runObject = {
+        name: "",
+        game: "",
+        category: "",
+        place: "",
+        time: "",
+        run_link: "",
+      };
+      runObject.name = userName;
         //runObject.game =  gameName //urlTest.substring(25, urlTest.indexOf('/run'))
         runObject.place = userData.data[i].place;
         //runObject.time = userData.data[i].run.times.primary_t;
@@ -81,6 +84,7 @@ function userInfoFetch(url) {
         
       
         findGameName(runObject, gameFetchURL);
+        findCatName(runObject, fetchCatUrl);
         toTime(runObject, userData.data[i].run.times.primary_t)
         // console.log('urlTest:', urlTest)
         // console.log('runObject value:', runObject)
@@ -136,11 +140,28 @@ function findUser(url) {
         });
   }
 
+  function findCatName(object, url){
+    fetch(url)
+      .then(function (response){
+          return response.json();
+      })
+      .then (function(data) {
+          catData = data;
+          console.log(catData);
+          object.category = (catData.data.name);
+          // searchArrayReturn.push(object)
+      });
+}
+
+ 
+
+//function to convert time to hrs/mins/seconds  
 function toTime(object, seconds){
     var retime = ''
     var date = new Date(null);
     date.setSeconds(seconds);
     retime = date.toISOString().substr(11, 8);
+//if hrs = 0, only show mins/seconds
     if(retime.substr(0,3) == '00:'){
       retime2 = retime.substr(3,retime.length)
       object.time = retime2
