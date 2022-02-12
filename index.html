@@ -32,22 +32,20 @@
     <p>Through the advent of websites like SRL and <a target="blank" href="racetime.gg"> racetime</a>, players from all over the world can meet and compete in a variety of categories. Using Speedrun Spectator, we can find active races for the categories that interest you, discover a new favorite speedgame, as well as give you the ability to track your favorite runner's performance against their peers. Speedrun spectator is the only website fast enough to keep up with all your favorite players!</p>
     </div>
   </div>
-  <div id = "search-field" class = "col-3 search-field">
-    <h2>Search</h2> <br>
-    <div id="multisearch"  class = "mx-2"><input id="search_txt" title="Enter search words" type="text" name="k" maxlength="200" />
-      <br>
-      <label for="users">
-      <input id="users" type="radio" name="radio" value="https://www.speedrun.com/api/v1/users?name="/>
-      Users
-      </label>
-      <label for="games">
-      <input id="games" type="radio" name="radio" value="https://www.speedrun.com/api/v1/games?name=">
-      Games</label></div>
-      <a name="" href="#" type="submit" value="go" class="btnPrimary" alt="Search" onclick="submitSearch();">Search</a>
+  <div id = "search-field" class = "col-12 search-field">
+    <div class="input-group">
+      <div class="form-outline">
+        <input type="search" id="form1" placeholder = 'User Search' class="form-control" />
+        <label class="form-label" for="form1"></label>
+      </div>
+      <button id = "searchBtn" type="button" class="btn btn-primary my-auto">
+        <i class="fas fa-search"> Search</i>
+      </button>
+    </div>
 </div>
 <div id ='top-container' class = 'top-container'>
 <div id = "search-results" class="col-9 search-results"> 
-        <h2>Search Results</h2>
+        
     </div>    
     <div id = "favorites" class = "col-3 favorite-runners">
         <h2>My favorites</h2>

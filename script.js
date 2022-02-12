@@ -1,15 +1,17 @@
-function submitSearch()
-{
-// If the all radio button is selected search everything on the site
-queryVal = ($('#search_txt').val());
-fetchURL = $('input[name="radio"]:checked', '#multisearch').val()+queryVal;
-console.log(fetchURL);
-$(".search-results").empty();
 
-findUser(fetchURL);
+// search button is broken forever lol
+var btnEl = document.getElementById("searchBtn");
+var fetchURL;
 
-//build the url with the url of the search page, the search terms and search scope and browse to it
+
+function createURL(){
+  var searchInputEl = document.querySelector("#form1");
+  var userNameSearch = searchInputEl.value;
+  var fetchURL = "https://www.speedrun.com/api/v1/users/"+userNameSearch;
+  console.log(fetchURL);
+  findUser(fetchURL);
 }
+//build the url with the url of the search page, the search terms and search scope and browse to it
 var apiKey = "nae9f81ug4cq6pljys6me3xxj";
 var preSearchUrlUser = "https://www.speedrun.com/api/v1/users";
 var preSearchUrlGame = "https://www.speedrun.com/api/v1/games";
@@ -110,12 +112,12 @@ function findUser(url) {
       .then(function (data) {
         initialData = data;
         console.log("Un-organized Data is here:");
-        userName = initialData.data[0].names.international
+        userName = initialData.data.names.international
         console.log(userName)
         return initialData;
       })
       .then(function(initialData) {
-        id = initialData.data[0].id;
+        id = initialData.data.id;
         console.log("Variable ID: " + id);
         newFetchUrl = 'https://www.speedrun.com/api/v1/users/'+id+'/personal-bests';
         return newFetchUrl;
@@ -169,3 +171,5 @@ function toTime(object, seconds){
     else object.time = retime 
     
   }  
+
+  btnEl.addEventListener('click',createURL);
