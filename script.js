@@ -1,5 +1,5 @@
 
-// search button is broken forever lol
+// search button
 var btnEl = document.getElementById("searchBtn");
 var fetchURL;
 
@@ -107,6 +107,12 @@ function userInfoFetch(url) {
 function findUser(url) {
   fetch(url)
       .then(function (response) {
+        //console.log(response.status);
+        //Error Handling for users not found
+        if (response.status == '404'){
+          var errorMessage = $("<h2> User Not Found </h2>");
+          $('#search-results').append(errorMessage);
+        }
         return response.json();
       })
       .then(function (data) {
@@ -172,4 +178,9 @@ function toTime(object, seconds){
     
   }  
 
+  function buildResultsBox(){
+    var title = $("<h2> TEST </h2>");
+    $('#search-results').append(title);
+
+  }
   btnEl.addEventListener('click',createURL);
