@@ -147,3 +147,23 @@ h1{
 
     
 }
+
+.followLinkBtn {
+border-left: 1px solid black;
+border-top-right-radius: 15px;
+border-bottom-right-radius: 15px;
+opacity: 50%;
+background-color: #06aed5;
+color: white;
+width: 40px;
+}
+
+.followLinkBtn:hover {
+transition: all 0.3s ease-in-out;
+opacity: 100%;
+}
+
+.followLinkBtn i:hover {
+font-size: 20px;
+transition: all 0.3s ease-in-out;
+}
