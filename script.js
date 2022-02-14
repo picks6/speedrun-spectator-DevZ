@@ -3,7 +3,6 @@
 var btnEl = document.getElementById("searchBtn");
 var fetchURL;
 
-
 function createURL(){
   var searchInputEl = document.querySelector("#form1");
   var userNameSearch = searchInputEl.value;
@@ -48,6 +47,7 @@ var gameName = '';
 function makeSearchUrlUser () {
   url = preSearchUrlUser + "/" + humanInputUser;
 };
+
 function userInfoFetch(url) {
     searchArrayReturn = [];
     fetch(url)
@@ -98,10 +98,12 @@ function userInfoFetch(url) {
     console.log(newFetchUrl);
     console.log("All processes complete.");
   return;
-});
-}
-
-
+  })
+  // !!! AUTOMATICALLY CALLING THE DISPLAY RESULTS FUNCTION DOES NOT WORK, NOT SURE WHY.
+  /* .then(function(){
+    displayResults();
+  }) */
+};
 
 
 function findUser(url) {
@@ -110,8 +112,8 @@ function findUser(url) {
         //console.log(response.status);
         //Error Handling for users not found
         if (response.status == '404'){
-          var errorMessage = $("<h2> User Not Found </h2>");
-          $('#search-results').append(errorMessage);
+          showErrorModal();
+          console.log("this is where an error modal would go");
         }
         return response.json();
       })
@@ -161,7 +163,6 @@ function findUser(url) {
       });
 }
 
- 
 
 //function to convert time to hrs/mins/seconds  
 function toTime(object, seconds){
@@ -176,11 +177,99 @@ function toTime(object, seconds){
     }
     else object.time = retime 
     
-  }  
+};
 
-  function buildResultsBox(){
-    var title = $("<h2> TEST </h2>");
-    $('#search-results').append(title);
+function displayResults() {
+  var searchResultsContainer = document.getElementById("search-results");
+  // RESET RESULTS BOX TO BLANK
+  document.getElementById('search-results').innerHTML = '<h2 id="search-results-header"></h2><br><table id="search-results-table"></table>';
+  var searchResultsHeader = document.getElementById("search-results-header");
+  // SEARCH RESULTS HEADER
+  searchResultsHeader.innerHTML = "Search Results:";
 
+  // TABLE-BUILDING BEGINS
+  let table = document.createElement('table');
+  let thead = document.createElement('thead');
+  let tbody = document.createElement('tbody');
+
+  table.classList.add("table", "table-striped", "table-hover");
+
+  table.appendChild(thead);
+  table.appendChild(tbody);
+
+  // SETTING UP ROW OF LABELS
+  let row_1 = document.createElement('tr');
+  let heading_1 = document.createElement('th');
+  let heading_2 = document.createElement('th');
+  let heading_3 = document.createElement('th');
+  let heading_4 = document.createElement('th');
+  let heading_5 = document.createElement('th');
+  heading_1.setAttribute("scope", "col");
+  heading_2.setAttribute("scope", "col");
+  heading_3.setAttribute("scope", "col");
+  heading_4.setAttribute("scope", "col");
+  heading_5.setAttribute("scope", "col");
+  heading_1.innerHTML = "Name";
+  heading_2.innerHTML = "Game";
+  heading_3.innerHTML = "Place";
+  heading_4.innerHTML = "Time";
+  heading_5.innerHTML = "Link";
+
+  // DISPLAYING ROW OF LABELS
+  row_1.appendChild(heading_1);
+  row_1.appendChild(heading_2);
+  row_1.appendChild(heading_3);
+  row_1.appendChild(heading_4);
+  row_1.appendChild(heading_5);
+  thead.appendChild(row_1);
+
+  // SETTING UP AND DISPLAYING ROWS OF RESULTS (the entire for-loop)
+  for (i=0; i<=4; i++) {
+    let row = document.createElement('tr');
+    let name = document.createElement('td');
+    let game = document.createElement('td');
+    let place = document.createElement('td');
+    let time = document.createElement('td');
+    let run_link = document.createElement('td');
+
+    var anchor = document.createElement("a");
+    anchor.setAttribute("href", searchArrayReturn[i].run_link);
+    anchor.setAttribute("target", "_blank");
+    var link = document.createElement("button");
+    link.setAttribute("name", "col-1");
+    link.setAttribute("href", searchArrayReturn[i].run_link);
+    link.setAttribute("target", "_blank");
+    link.className = "followLinkBtn";
+    var fontAwesomeGraphic = document.createElement("i");
+    fontAwesomeGraphic.classList.add("fas", "fa-play");
+
+    run_link.appendChild(anchor);
+    anchor.appendChild(link);
+    link.appendChild(fontAwesomeGraphic);
+
+    row.setAttribute("scope", "row");
+
+    name.innerHTML = searchArrayReturn[i].name;
+    game.innerHTML = searchArrayReturn[i].game;
+    place.innerHTML = searchArrayReturn[i].place;
+    time.innerHTML = searchArrayReturn[i].time;
+
+    row.appendChild(name);
+    row.appendChild(game);
+    row.appendChild(place);
+    row.appendChild(time);
+    row.appendChild(run_link);
+    tbody.appendChild(row);
   }
-  btnEl.addEventListener('click',createURL);
+
+  searchResultsContainer.appendChild(table);
+};
+
+
+// MODAL for ERRORS
+function showErrorModal () {errorInputModal.toggle();}
+var errorInputModal = new bootstrap.Modal(document.getElementById('bad-input-modal'));
+
+
+// SEARCH BUTTON EVENT LISTENER
+btnEl.addEventListener('click',createURL);
