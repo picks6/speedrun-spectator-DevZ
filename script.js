@@ -47,6 +47,7 @@ var gameName = '';
 function makeSearchUrlUser () {
   url = preSearchUrlUser + "/" + humanInputUser;
 };
+
 function userInfoFetch(url) {
     searchArrayReturn = [];
     fetch(url)
@@ -97,11 +98,12 @@ function userInfoFetch(url) {
     console.log(newFetchUrl);
     console.log("All processes complete.");
   return;
-})
-  .then(function() {
-    buildResultsBox();
-  });
-}
+  })
+  // !!! AUTOMATICALLY CALLING THE DISPLAY RESULTS FUNCTION DOES NOT WORK, NOT SURE WHY.
+  /* .then(function(){
+    displayResults();
+  }) */
+};
 
 
 function findUser(url) {
@@ -175,17 +177,15 @@ function toTime(object, seconds){
     }
     else object.time = retime 
     
-}  
+};
 
-var searchResultsContainer = document.getElementById("search-results");
-var searchResultsHeader = document.getElementById("search-results-header");
-
-function buildResultsBox(){
+function displayResults() {
+  var searchResultsContainer = document.getElementById("search-results");
   // RESET RESULTS BOX TO BLANK
   document.getElementById('search-results').innerHTML = '<h2 id="search-results-header"></h2><br><table id="search-results-table"></table>';
-
+  var searchResultsHeader = document.getElementById("search-results-header");
   // SEARCH RESULTS HEADER
-  searchResultsHeader.innerHTML = "Search Results:"
+  searchResultsHeader.innerHTML = "Search Results:";
 
   // TABLE-BUILDING BEGINS
   let table = document.createElement('table');
@@ -233,12 +233,12 @@ function buildResultsBox(){
     let run_link = document.createElement('td');
 
     var anchor = document.createElement("a");
-    anchor.setAttribute("href", searchArrayReturn[i].run_link)
+    anchor.setAttribute("href", searchArrayReturn[i].run_link);
     anchor.setAttribute("target", "_blank");
     var link = document.createElement("button");
-    link.setAttribute("name", "col-1")
+    link.setAttribute("name", "col-1");
     link.setAttribute("href", searchArrayReturn[i].run_link);
-    link.setAttribute("target", "_blank")
+    link.setAttribute("target", "_blank");
     link.className = "followLinkBtn";
     var fontAwesomeGraphic = document.createElement("i");
     fontAwesomeGraphic.classList.add("fas", "fa-play");
