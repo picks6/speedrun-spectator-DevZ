@@ -98,7 +98,7 @@ function userInfoFetch(url) {
     console.log(newFetchUrl);
     console.log("All processes complete.");
     function awaitResults () {
-      setTimeout( displayResults, 2000);
+      setTimeout( displayResults, 1000);
     };
     awaitResults();  
     return;
@@ -186,11 +186,13 @@ function toTime(object, seconds){
 
 function displayResults() {
   var searchResultsContainer = document.getElementById("search-results");
+  var searchInputEl = document.querySelector("#form1");
+  var userNameSearch = searchInputEl.value;
   // RESET RESULTS BOX TO BLANK
   document.getElementById('search-results').innerHTML = '<h2 id="search-results-header"></h2><br><table id="search-results-table"></table>';
   var searchResultsHeader = document.getElementById("search-results-header");
   // SEARCH RESULTS HEADER
-  searchResultsHeader.innerHTML = "Search Results:";
+  searchResultsHeader.innerHTML = "Search Results: "+ userNameSearch;
 
   // TABLE-BUILDING BEGINS
   let table = document.createElement('table');
@@ -214,8 +216,8 @@ function displayResults() {
   heading_3.setAttribute("scope", "col");
   heading_4.setAttribute("scope", "col");
   heading_5.setAttribute("scope", "col");
-  heading_1.innerHTML = "Name";
-  heading_2.innerHTML = "Game";
+  heading_1.innerHTML = "Game";
+  heading_2.innerHTML = "Category";
   heading_3.innerHTML = "Place";
   heading_4.innerHTML = "Time";
   heading_5.innerHTML = "Link";
@@ -229,7 +231,10 @@ function displayResults() {
   thead.appendChild(row_1);
 
   // SETTING UP AND DISPLAYING ROWS OF RESULTS (the entire for-loop)
-  for (i=0; i<=4; i++) {
+  var runCounter = Math.min(searchArrayReturn.length,4)
+  
+
+  for (i=0; i<runCounter; i++) {
     let row = document.createElement('tr');
     let name = document.createElement('td');
     let game = document.createElement('td');
@@ -254,8 +259,8 @@ function displayResults() {
 
     row.setAttribute("scope", "row");
 
-    name.innerHTML = searchArrayReturn[i].name;
-    game.innerHTML = searchArrayReturn[i].game;
+    name.innerHTML = searchArrayReturn[i].game;
+    game.innerHTML = searchArrayReturn[i].category;
     place.innerHTML = searchArrayReturn[i].place;
     time.innerHTML = searchArrayReturn[i].time;
 
@@ -267,13 +272,23 @@ function displayResults() {
     tbody.appendChild(row);
   }
 
+  //create favorite button
+  var createButtonEl = document.createElement('button');
+  createButtonEl.textContent = "Favorite";
+  createButtonEl.classList.add("btn-primary", "favBtn","col-3");
+  createButtonEl.id = 'favBtn';
+  
+    
   searchResultsContainer.appendChild(table);
+  searchResultsContainer.append(createButtonEl);
 };
 
 
 // MODAL for ERRORS
 function showErrorModal () {errorInputModal.toggle();}
 var errorInputModal = new bootstrap.Modal(document.getElementById('bad-input-modal'));
+
+
 
 
 // SEARCH BUTTON EVENT LISTENER
