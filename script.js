@@ -97,7 +97,12 @@ function userInfoFetch(url) {
     console.log(searchArrayReturn);
     console.log(newFetchUrl);
     console.log("All processes complete.");
-  return;
+    function awaitResults () {
+      setTimeout( displayResults, 2000);
+    };
+    awaitResults();  
+    return;
+    
   })
   // !!! AUTOMATICALLY CALLING THE DISPLAY RESULTS FUNCTION DOES NOT WORK, NOT SURE WHY.
   /* .then(function(){
