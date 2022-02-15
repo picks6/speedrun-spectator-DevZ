@@ -10,6 +10,13 @@ function createURL(){
   console.log(fetchURL);
   findUser(fetchURL);
 }
+
+function searchFromFavorite () {
+  var fromFavoriteURL = "https://www.speedrun.com/api/v1/users/"+userName;
+  console.log(fromFavoriteURL);
+  findUser(fromFavoriteURL);
+}
+
 //build the url with the url of the search page, the search terms and search scope and browse to it
 var apiKey = "nae9f81ug4cq6pljys6me3xxj";
 var preSearchUrlUser = "https://www.speedrun.com/api/v1/users";
@@ -192,7 +199,7 @@ function displayResults() {
   document.getElementById('search-results').innerHTML = '<h2 id="search-results-header"></h2><br><table id="search-results-table"></table>';
   var searchResultsHeader = document.getElementById("search-results-header");
   // SEARCH RESULTS HEADER
-  searchResultsHeader.innerHTML = "Search Results: "+ userNameSearch;
+  searchResultsHeader.innerHTML = "Search Results: "+ searchArrayReturn[0].name;
 
   // TABLE-BUILDING BEGINS
   let table = document.createElement('table');
@@ -231,7 +238,7 @@ function displayResults() {
   thead.appendChild(row_1);
 
   // SETTING UP AND DISPLAYING ROWS OF RESULTS (the entire for-loop)
-  var runCounter = Math.min(searchArrayReturn.length,4)
+  var runCounter = Math.min(searchArrayReturn.length,5)
   
 
   for (i=0; i<runCounter; i++) {
@@ -273,16 +280,16 @@ function displayResults() {
   }
 
   //create favorite button
-  var createButtonEl = document.createElement('button');
   createButtonEl.textContent = "Favorite";
   createButtonEl.classList.add("btn-primary", "favBtn","col-3");
   createButtonEl.id = 'favBtn';
   
-    
+  
   searchResultsContainer.appendChild(table);
   searchResultsContainer.append(createButtonEl);
 };
 
+var createButtonEl = document.createElement('button');
 
 // MODAL for ERRORS
 function showErrorModal () {errorInputModal.toggle();}
@@ -291,5 +298,67 @@ var errorInputModal = new bootstrap.Modal(document.getElementById('bad-input-mod
 
 
 
+// LOCAL STORAGE
+
+// USER STORAGE of RECENT SEARCHES
+var storedSearches = JSON.parse(localStorage.getItem("lsStoredRunnerSearches")) || [];
+var mostRecentSearch = localStorage.getItem("lsMostRecentRunnerSearch");
+
+// HTML Elements Reference
+var savedFavoriteButton1El = document.getElementById("fav1-btn");
+var savedFavoriteButton2El = document.getElementById("fav2-btn");
+var savedFavoriteButton3El = document.getElementById("fav3-btn");
+var savedFavoriteButton4El = document.getElementById("fav4-btn");
+var savedFavoriteButton5El = document.getElementById("fav5-btn");
+var savedFavoriteButton6El = document.getElementById("fav6-btn");
+var savedFavoriteButton7El = document.getElementById("fav7-btn");
+var savedFavoriteButton8El = document.getElementById("fav8-btn");
+var savedFavoriteText1El = document.getElementById("fav1-txt");
+var savedFavoriteText2El = document.getElementById("fav2-txt");
+var savedFavoriteText3El = document.getElementById("fav3-txt");
+var savedFavoriteText4El = document.getElementById("fav4-txt");
+var savedFavoriteText5El = document.getElementById("fav5-txt");
+var savedFavoriteText6El = document.getElementById("fav6-txt");
+var savedFavoriteText7El = document.getElementById("fav7-txt");
+var savedFavoriteText8El = document.getElementById("fav8-txt");
+
+// FUNCTION TO SAVE SEARCH
+function storeSearch () {
+  console.log("search button was pressed");
+  localStorage.setItem("lsMostRecentWeatherSearch", userName);
+  mostRecentSearch = localStorage.getItem("lsMostRecentWeatherSearch");
+  storedSearches.unshift(mostRecentSearch);
+  storedSearches.splice(8);
+  localStorage.setItem("lsStoredRunnerSearches", JSON.stringify(storedSearches));
+  displaySearchHistory();
+};
+
+function displaySearchHistory () {
+  savedFavoriteButton1El.textContent = storedSearches[0];
+  savedFavoriteButton2El.textContent = storedSearches[1];
+  savedFavoriteButton3El.textContent = storedSearches[2];
+  savedFavoriteButton4El.textContent = storedSearches[3];
+  savedFavoriteButton5El.textContent = storedSearches[4];
+  savedFavoriteButton6El.textContent = storedSearches[5];
+  savedFavoriteButton7El.textContent = storedSearches[6];
+  savedFavoriteButton8El.textContent = storedSearches[7];
+};
+
+
 // SEARCH BUTTON EVENT LISTENER
 btnEl.addEventListener('click',createURL);
+
+// SAVE FAVORITE EVENT LISTENER
+createButtonEl.addEventListener('click',storeSearch);
+
+// ON-CLICKs FOR STORED SEARCHES
+savedFavoriteButton1El.onclick = function () {userName = storedSearches[0]; searchInputEl = storedSearches[0]; searchFromFavorite();}
+savedFavoriteButton2El.onclick = function () {userName = storedSearches[1]; searchInputEl = storedSearches[1]; searchFromFavorite();}
+savedFavoriteButton3El.onclick = function () {userName = storedSearches[2]; searchInputEl = storedSearches[2]; searchFromFavorite();}
+savedFavoriteButton4El.onclick = function () {userName = storedSearches[3]; searchInputEl = storedSearches[3]; searchFromFavorite();}
+savedFavoriteButton5El.onclick = function () {userName = storedSearches[4]; searchInputEl = storedSearches[4]; searchFromFavorite();}
+savedFavoriteButton6El.onclick = function () {userName = storedSearches[5]; searchInputEl = storedSearches[5]; searchFromFavorite();}
+savedFavoriteButton7El.onclick = function () {userName = storedSearches[6]; searchInputEl = storedSearches[6]; searchFromFavorite();}
+savedFavoriteButton8El.onclick = function () {userName = storedSearches[7]; searchInputEl = storedSearches[7]; searchFromFavorite();}
+
+displaySearchHistory();
