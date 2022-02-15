@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <!-- MODAL -->
+      <!-- MODAL for bad-input -->
       <div class="modal fade" id="bad-input-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -83,6 +83,24 @@
             </div>
             <div class="modal-body">
               Your search terms could not be found.  Try something else.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL for Run-Less User -->
+      <div class="modal fade" id="no-runs-for-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Search Error</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              This user doesn't have any runs to show.  Please keep searching.
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
