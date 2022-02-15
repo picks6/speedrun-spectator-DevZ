@@ -198,6 +198,13 @@ function displayResults() {
   // RESET RESULTS BOX TO BLANK
   document.getElementById('search-results').innerHTML = '<h2 id="search-results-header"></h2><br><table id="search-results-table"></table>';
   var searchResultsHeader = document.getElementById("search-results-header");
+  
+  if (searchArrayReturn[0] == null || searchArrayReturn[0] == undefined) {
+    console.log("user has no runs");
+    showNoRunsModal();
+    return;
+  }
+  
   // SEARCH RESULTS HEADER
   searchResultsHeader.innerHTML = "Search Results: " + searchArrayReturn[0].name;
 
@@ -295,8 +302,8 @@ var createButtonEl = document.createElement('button');
 function showErrorModal () {errorInputModal.toggle();}
 var errorInputModal = new bootstrap.Modal(document.getElementById('bad-input-modal'));
 
-
-
+function showNoRunsModal () {noRunsModal.toggle();};
+var noRunsModal = new bootstrap.Modal(document.getElementById('no-runs-for-user'));
 
 // LOCAL STORAGE
 
