@@ -333,6 +333,17 @@ function storeSearch () {
   displaySearchHistory();
 };
 
+function hideEmptyFavorites () {
+  if (storedSearches[0] == null || storedSearches[0] == '' || storedSearches[0] == undefined) {savedFavoriteButton1El.classList.add("invisible");};
+  if (storedSearches[1] == null || storedSearches[1] == '' || storedSearches[1] == undefined) {savedFavoriteButton2El.classList.add("invisible");};
+  if (storedSearches[2] == null || storedSearches[2] == '' || storedSearches[2] == undefined) {savedFavoriteButton3El.classList.add("invisible");};
+  if (storedSearches[3] == null || storedSearches[3] == '' || storedSearches[3] == undefined) {savedFavoriteButton4El.classList.add("invisible");};
+  if (storedSearches[4] == null || storedSearches[4] == '' || storedSearches[4] == undefined) {savedFavoriteButton5El.classList.add("invisible");};
+  if (storedSearches[5] == null || storedSearches[5] == '' || storedSearches[5] == undefined) {savedFavoriteButton6El.classList.add("invisible");};
+  if (storedSearches[6] == null || storedSearches[6] == '' || storedSearches[6] == undefined) {savedFavoriteButton7El.classList.add("invisible");};
+  if (storedSearches[7] == null || storedSearches[7] == '' || storedSearches[7] == undefined) {savedFavoriteButton8El.classList.add("invisible");};
+};
+
 function displaySearchHistory () {
   savedFavoriteButton1El.textContent = storedSearches[0];
   savedFavoriteButton2El.textContent = storedSearches[1];
@@ -342,6 +353,7 @@ function displaySearchHistory () {
   savedFavoriteButton6El.textContent = storedSearches[5];
   savedFavoriteButton7El.textContent = storedSearches[6];
   savedFavoriteButton8El.textContent = storedSearches[7];
+  hideEmptyFavorites();
 };
 
 
