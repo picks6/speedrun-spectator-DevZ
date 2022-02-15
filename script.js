@@ -199,7 +199,7 @@ function displayResults() {
   document.getElementById('search-results').innerHTML = '<h2 id="search-results-header"></h2><br><table id="search-results-table"></table>';
   var searchResultsHeader = document.getElementById("search-results-header");
   // SEARCH RESULTS HEADER
-  searchResultsHeader.innerHTML = "Search Results: "+ searchArrayReturn[0].name;
+  searchResultsHeader.innerHTML = "Search Results: " + searchArrayReturn[0].name;
 
   // TABLE-BUILDING BEGINS
   let table = document.createElement('table');
@@ -324,16 +324,20 @@ var savedFavoriteText8El = document.getElementById("fav8-txt");
 
 // FUNCTION TO SAVE SEARCH
 function storeSearch () {
+  displaySearchHistory();
+  updateFavorites();
   console.log("search button was pressed");
   localStorage.setItem("lsMostRecentWeatherSearch", userName);
+  console.log(userName + " was stored to localStorage.");
   mostRecentSearch = localStorage.getItem("lsMostRecentWeatherSearch");
   storedSearches.unshift(mostRecentSearch);
   storedSearches.splice(8);
   localStorage.setItem("lsStoredRunnerSearches", JSON.stringify(storedSearches));
   displaySearchHistory();
+  setInterval(updateFavorites(), 500);
 };
 
-function hideEmptyFavorites () {
+function updateFavorites () {
   if (storedSearches[0] == null || storedSearches[0] == '' || storedSearches[0] == undefined) {savedFavoriteButton1El.classList.add("invisible");};
   if (storedSearches[1] == null || storedSearches[1] == '' || storedSearches[1] == undefined) {savedFavoriteButton2El.classList.add("invisible");};
   if (storedSearches[2] == null || storedSearches[2] == '' || storedSearches[2] == undefined) {savedFavoriteButton3El.classList.add("invisible");};
@@ -342,7 +346,19 @@ function hideEmptyFavorites () {
   if (storedSearches[5] == null || storedSearches[5] == '' || storedSearches[5] == undefined) {savedFavoriteButton6El.classList.add("invisible");};
   if (storedSearches[6] == null || storedSearches[6] == '' || storedSearches[6] == undefined) {savedFavoriteButton7El.classList.add("invisible");};
   if (storedSearches[7] == null || storedSearches[7] == '' || storedSearches[7] == undefined) {savedFavoriteButton8El.classList.add("invisible");};
+  showNonNullButtons();
 };
+
+function showNonNullButtons () {
+  if (storedSearches[0] != null) {savedFavoriteButton1El.classList.remove("invisible"); savedFavoriteButton1El.classList.add("visible");};
+  if (storedSearches[1] != null) {savedFavoriteButton2El.classList.remove("invisible"); savedFavoriteButton2El.classList.add("visible");};
+  if (storedSearches[2] != null) {savedFavoriteButton3El.classList.remove("invisible"); savedFavoriteButton3El.classList.add("visible");};
+  if (storedSearches[3] != null) {savedFavoriteButton4El.classList.remove("invisible"); savedFavoriteButton4El.classList.add("visible");};
+  if (storedSearches[4] != null) {savedFavoriteButton5El.classList.remove("invisible"); savedFavoriteButton5El.classList.add("visible");};
+  if (storedSearches[5] != null) {savedFavoriteButton6El.classList.remove("invisible"); savedFavoriteButton6El.classList.add("visible");};
+  if (storedSearches[6] != null) {savedFavoriteButton7El.classList.remove("invisible"); savedFavoriteButton7El.classList.add("visible");};
+  if (storedSearches[7] != null) {savedFavoriteButton8El.classList.remove("invisible"); savedFavoriteButton8El.classList.add("visible");};
+}
 
 function displaySearchHistory () {
   savedFavoriteButton1El.textContent = storedSearches[0];
@@ -353,9 +369,8 @@ function displaySearchHistory () {
   savedFavoriteButton6El.textContent = storedSearches[5];
   savedFavoriteButton7El.textContent = storedSearches[6];
   savedFavoriteButton8El.textContent = storedSearches[7];
-  hideEmptyFavorites();
+  updateFavorites();
 };
-
 
 // SEARCH BUTTON EVENT LISTENER
 btnEl.addEventListener('click',createURL);
