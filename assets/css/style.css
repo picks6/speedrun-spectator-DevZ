@@ -25,7 +25,7 @@ h1 {
     justify-items:center;
     align-items:center;
     text-align: center;
-    background: url('speedrun-bg-sonic-edit.png') center center no-repeat;
+    background: url("./speedrun-bg-sonic-edit.png") center center no-repeat;
     border-radius: 0;
     border-bottom: 10px solid black;
     font-family: 'Zen Dots' 'Bungee Shade', cursive;
@@ -134,11 +134,7 @@ transition: all 0.3s ease-in-out;
 
 .footer {
     height: auto;
-    background-image: linear-gradient(
-        #0000ff,
-        #0000ee
-    );
-    color: white;
+    background-color: #ff00f2;
     /* border-radius: 0; */
     border-top: 5px solid black;
     padding-top: 3px;
