@@ -7,6 +7,7 @@
 
 body {
     background-color: #d9dcd6;
+    font-family: 'Anaheim';
 }
 
 h1 {
@@ -26,9 +27,9 @@ h1 {
     background: url("./speedrun-bg-sonic-edit.png") center center no-repeat;
     border-radius: 0;
     border-bottom: 10px solid black;
-    font-family: 'Bungee Shade', cursive;
+    font-family: 'Zen Dots' 'Bungee Shade', cursive;
     color: white;
-    height: 25vh;
+    height: 45vh;
     /* position: relative; */
     justify-content: center;
     -webkit-background-size: cover;
@@ -128,4 +129,41 @@ transition: all 0.3s ease-in-out;
     background-color: #ff00f2;
     /* border-radius: 0; */
     border-top: 10px solid black;
+}
+.info-what{
+    margin:5px;
+    font-size:22px;
+}
+
+.info-why{
+    margin:5px;
+    font-size:22px;
+}
+
+.info-how{
+    margin:5px;
+    font-size: 22px;
+}
+
+@media screen and (max-width: 792px) {
+    .info-snippet
+    {
+        font-size: 16px;    
+    }
+}
+
+
+@media screen and (max-width: 792px) {
+    .subheader
+    {
+        font-size: 16px;    
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 792px) {
+    .info-how
+    {
+        font-size: 12px;    
+    }
 }
