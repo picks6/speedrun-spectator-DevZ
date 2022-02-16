@@ -430,6 +430,6 @@ function createQuote(){
   
 }
 const div = document.getElementById("title");
-  function addClass() {
+function addClass() {
     title.classList.toggle("glow");
   }
