@@ -50,6 +50,30 @@ var userName = "";
 var gameID = '';
 var urlTest = '';
 var gameName = '';
+var secondAPIdata;
+
+function testNewApi () {
+  fetch("https://peerreach.p.rapidapi.com/user/lookup.json?screen_name=patrickfham", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "peerreach.p.rapidapi.com",
+		"x-rapidapi-key": "6d47c13222msh32f785c11f79706p1c2636jsnb1d570653e12"
+	}
+})
+.then(response => {
+	console.log(response);
+  return response.json();
+})
+.then(data => {
+  console.log(data)
+  secondAPIdata = data;
+  console.log(secondAPIdata);
+  return;
+})
+.catch(err => {
+	console.error(err);
+});
+}
 
 function makeSearchUrlUser () {
   url = preSearchUrlUser + "/" + humanInputUser;
@@ -394,5 +418,27 @@ savedFavoriteButton5El.onclick = function () {userName = storedSearches[4]; sear
 savedFavoriteButton6El.onclick = function () {userName = storedSearches[5]; searchInputEl = storedSearches[5]; searchFromFavorite();}
 savedFavoriteButton7El.onclick = function () {userName = storedSearches[6]; searchInputEl = storedSearches[6]; searchFromFavorite();}
 savedFavoriteButton8El.onclick = function () {userName = storedSearches[7]; searchInputEl = storedSearches[7]; searchFromFavorite();}
+
+
+// 3rd API USE ... RANDOM ACTIVITY GENERATOR, LOL.
+var randomActivity
+var activityEl = document.getElementById("activity")
+
+function fetchRandomActivity () {
+  fetch("https://www.boredapi.com/api/activity")
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    randomActivity = data;
+    console.log(randomActivity);
+    return
+  })
+}
+function showNewActivity () {
+  activityEl.textContent = randomActivity.activity;
+}
+
+fetchRandomActivity();
 
 displaySearchHistory();
