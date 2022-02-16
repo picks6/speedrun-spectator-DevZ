@@ -22,6 +22,26 @@ h1{
 
 }
 
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+    border-radius: 0;
+    border-bottom: 10px solid black;
+    font-family: 'Bungee Shade', cursive;
+    color: white;
+    height: 40vh;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    /* background: linear-gradient(315deg, #009a9a 0%, teal 74%); */
+    /* background-image: url(); */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;  
+    display: flex;
+}
+
 .header {
     width:100%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -64,25 +84,6 @@ h1{
 
 }
 
-.jumbotron {
-    text-align: center;
-    background-color: transparent;
-    border-radius: 0;
-    border-bottom: 10px solid black;
-    font-family: 'Bungee Shade', cursive;
-    color: white;
-    height: 40vh;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(315deg, #009a9a 0%, teal 74%);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;  
-    display: flex;
-}
-
 .subhead-text {
       position:absolute;
       bottom: 20px;
@@ -90,13 +91,6 @@ h1{
       font-weight: bold;
       font-style: italic;
       text-shadow: 12px, 12px, gray;
-}
-
-.score-box {
-    position: relative;
-    display: flex;
-    border: 2px solid black;
-    height: 20vh
 }
 
 .followLinkBtn {
@@ -118,6 +112,7 @@ opacity: 100%;
 font-size: 20px;
 transition: all 0.3s ease-in-out;
 }
+
 .glow {
   font-size: 40px;
   color: white;
@@ -133,3 +128,4 @@ transition: all 0.3s ease-in-out;
   to {
     text-shadow: 0 0 20px white, 0 0 30px #FFA64D, 0 0 40px #FFA64D, 0 0 50px #FFA64D, 0 0 60px #FFA64D, 0 0 70px #FFA64D, 0 0 80px #FFA64D;
   }
+}
