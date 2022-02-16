@@ -2,6 +2,10 @@
 // search button
 var btnEl = document.getElementById("searchBtn");
 var fetchURL;
+var quoteData = {
+  author: '',
+  quote: '',
+}
 
 function createURL(){
   var searchInputEl = document.querySelector("#form1");
@@ -71,10 +75,11 @@ function userInfoFetch(url) {
         //console.log(gameID);
       gameFetchURL = "https://www.speedrun.com/api/v1/games/"+gameID;
         // urltest.substring(25, urltest.indexOf('/run'))
-        
+      sysID = userData.data[i].run.system.platform
       urlTest = userData.data[i].run.weblink;
       catID =  userData.data[i].run.category
       fetchCatUrl = "https://www.speedrun.com/api/v1/categories/"+catID;
+      fetchSystemUrl = "https://www.speedrun.com/api/v1/platforms/"+sysID
 
       var runObject = {
         name: "",
@@ -94,6 +99,7 @@ function userInfoFetch(url) {
       
         findGameName(runObject, gameFetchURL);
         findCatName(runObject, fetchCatUrl);
+
         toTime(runObject, userData.data[i].run.times.primary_t)
         // console.log('urlTest:', urlTest)
         // console.log('runObject value:', runObject)
@@ -144,6 +150,7 @@ function findUser(url) {
       })
       .then(function() {
         userInfoFetch(newFetchUrl);
+        createQuote();
         return;  
       });
   };
@@ -176,6 +183,7 @@ function findUser(url) {
 }
 
 
+
 //function to convert time to hrs/mins/seconds  
 function toTime(object, seconds){
     var retime = ''
@@ -202,6 +210,7 @@ function displayResults() {
   if (searchArrayReturn[0] == null || searchArrayReturn[0] == undefined) {
     console.log("user has no runs");
     showNoRunsModal();
+    //createQuote();
     return;
   }
   
@@ -294,6 +303,7 @@ function displayResults() {
   
   searchResultsContainer.appendChild(table);
   searchResultsContainer.append(createButtonEl);
+  createQuote();
 };
 
 var createButtonEl = document.createElement('button');
@@ -396,3 +406,24 @@ savedFavoriteButton7El.onclick = function () {userName = storedSearches[6]; sear
 savedFavoriteButton8El.onclick = function () {userName = storedSearches[7]; searchInputEl = storedSearches[7]; searchFromFavorite();}
 
 displaySearchHistory();
+fetchQuote();
+
+
+function fetchQuote(){
+  fetch("https://free-quotes-api.herokuapp.com/") 
+  .then(function (response) {
+    return response.json();
+    })
+  .then(function (data) {
+    quoteData.author = data.author;
+    quoteData.quote = data.quote;
+    })
+};
+
+function createQuote(){
+  var quoteEl = document.createElement('h3')
+  quoteEl.textContent = quoteData.quote + " - " + quoteData.author;
+  var searchResultsContainer = document.getElementById("search-results");
+  searchResultsContainer.append(quoteEl);
+  
+}
