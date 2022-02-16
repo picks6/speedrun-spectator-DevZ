@@ -21,6 +21,23 @@ body
     position: absolute;
 }
 
+.glow {
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+      }
+  
+      @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px white 0 0 20px white, 0 0 30px #FF9966, 0 0 40px #FF9966, 0 0 50px #FF9966, 0 0 60px #FF9966, 0 0 70px #FF9966;
+    }
+  
+    to {
+      text-shadow: 0 0 20px white, 0 0 30px #FFA64D, 0 0 40px #FFA64D, 0 0 50px #FFA64D, 0 0 60px #FFA64D, 0 0 70px #FFA64D, 0 0 80px #FFA64D;
+    }
+      }
+
 .header h1
 {
     margin-left:10px;
@@ -29,6 +46,12 @@ body
     font-size: 48px;
     font-family: 'Zen Dots'
 }
+
+.jumbotron ul li:hover {
+    background: teal;
+    text-transform: uppercase;
+   
+   }
 
 .jumbotron ul
 {

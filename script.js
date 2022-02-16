@@ -429,3 +429,7 @@ function createQuote(){
   searchResultsContainer.append(quoteEl);
   
 }
+const div = document.getElementById("title");
+  function addClass() {
+    title.classList.toggle("glow");
+  }
