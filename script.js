@@ -1,27 +1,5 @@
 
-// search button
-var btnEl = document.getElementById("searchBtn");
-var fetchURL;
-var quoteData = {
-  author: '',
-  quote: '',
-}
-
-function createURL(){
-  var searchInputEl = document.querySelector("#form1");
-  var userNameSearch = searchInputEl.value;
-  var fetchURL = "https://www.speedrun.com/api/v1/users/"+userNameSearch;
-  console.log(fetchURL);
-  findUser(fetchURL);
-}
-
-function searchFromFavorite () {
-  var fromFavoriteURL = "https://www.speedrun.com/api/v1/users/"+userName;
-  console.log(fromFavoriteURL);
-  findUser(fromFavoriteURL);
-}
-
-//build the url with the url of the search page, the search terms and search scope and browse to it
+// LIST OF VARIABLES TO BE USED, some given, some empty
 var apiKey = "nae9f81ug4cq6pljys6me3xxj";
 var preSearchUrlUser = "https://www.speedrun.com/api/v1/users";
 var preSearchUrlGame = "https://www.speedrun.com/api/v1/games";
@@ -55,34 +33,34 @@ var gameID = '';
 var urlTest = '';
 var gameName = '';
 var secondAPIdata;
-
-function testNewApi () {
-  fetch("https://peerreach.p.rapidapi.com/user/lookup.json?screen_name=patrickfham", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "peerreach.p.rapidapi.com",
-		"x-rapidapi-key": "6d47c13222msh32f785c11f79706p1c2636jsnb1d570653e12"
-	}
-})
-.then(response => {
-	console.log(response);
-  return response.json();
-})
-.then(data => {
-  console.log(data)
-  secondAPIdata = data;
-  console.log(secondAPIdata);
-  return;
-})
-.catch(err => {
-	console.error(err);
-});
+var btnEl = document.getElementById("searchBtn");
+var fetchURL;
+var quoteData = {
+  author: '',
+  quote: '',
 }
 
+// TAKES USER INPUT AND MAKES A USABLE URL OUT OF IT
+function createURL(){
+  var searchInputEl = document.querySelector("#form1");
+  var userNameSearch = searchInputEl.value;
+  var fetchURL = "https://www.speedrun.com/api/v1/users/"+userNameSearch;
+  console.log(fetchURL);
+  findUser(fetchURL);
+}
+
+// OMITS THE USER-INPUT STEP, INSTEAD USES THE STORED VALUE TO SEARCH
+function searchFromFavorite () {
+  var fromFavoriteURL = "https://www.speedrun.com/api/v1/users/"+userName;
+  console.log(fromFavoriteURL);
+  findUser(fromFavoriteURL);
+}
+/* 
 function makeSearchUrlUser () {
   url = preSearchUrlUser + "/" + humanInputUser;
-};
+}; */
 
+// RETRIEVES AND ORDERS ALL THE INFO ABOUT THAT USER
 function userInfoFetch(url) {
     searchArrayReturn = [];
     fetch(url)
@@ -120,14 +98,10 @@ function userInfoFetch(url) {
         runObject.run_link = urlTest;
         //console.log(gameName);
         
-      
         findGameName(runObject, gameFetchURL);
         findCatName(runObject, fetchCatUrl);
 
         toTime(runObject, userData.data[i].run.times.primary_t)
-        // console.log('urlTest:', urlTest)
-        // console.log('runObject value:', runObject)
-        // console.log('runObject.run_link in for loop:', runObject.run_link)
         buildArray.push(runObject);
     };
     searchArrayReturn = buildArray;
@@ -141,87 +115,80 @@ function userInfoFetch(url) {
     return;
     
   })
-  // !!! AUTOMATICALLY CALLING THE DISPLAY RESULTS FUNCTION DOES NOT WORK, NOT SURE WHY.
-  /* .then(function(){
-    displayResults();
-  }) */
 };
 
 
 function findUser(url) {
   fetch(url)
-      .then(function (response) {
-        //console.log(response.status);
-        //Error Handling for users not found
-        if (response.status == '404'){
-          showErrorModal();
-          console.log("this is where an error modal would go");
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        initialData = data;
-        console.log("Un-organized Data is here:");
-        userName = initialData.data.names.international
-        console.log(userName)
-        return initialData;
-      })
-      .then(function(initialData) {
-        id = initialData.data.id;
-        console.log("Variable ID: " + id);
-        newFetchUrl = 'https://www.speedrun.com/api/v1/users/'+id+'/personal-bests';
-        return newFetchUrl;
-      })
-      .then(function() {
-        userInfoFetch(newFetchUrl);
-        return;  
-      });
-  };
+    .then(function (response) {
+      //console.log(response.status);
+      //Error Handling for users not found
+      if (response.status == '404'){
+        showErrorModal();
+        console.log("this is where an error modal would go");
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      initialData = data;
+      console.log("Un-organized Data is here:");
+      userName = initialData.data.names.international
+      console.log(userName)
+      return initialData;
+    })
+    .then(function(initialData) {
+      id = initialData.data.id;
+      console.log("Variable ID: " + id);
+      newFetchUrl = 'https://www.speedrun.com/api/v1/users/'+id+'/personal-bests';
+      return newFetchUrl;
+    })
+    .then(function() {
+      userInfoFetch(newFetchUrl);
+      return;  
+    });
+};
 
- 
-  function findGameName(object, url){
-      fetch(url)
-        .then(function (response){
-            return response.json();
-        })
-        .then (function(data) {
-            gameData = data;
-            object.game = (gameData.data.names.international);
-            console.log(gameName);
-           // searchArrayReturn.push(object)
-        });
-  }
-
-  function findCatName(object, url){
-    fetch(url)
-      .then(function (response){
-          return response.json();
-      })
-      .then (function(data) {
-          catData = data;
-          console.log(catData);
-          object.category = (catData.data.name);
-          // searchArrayReturn.push(object)
-      });
+function findGameName(object, url){
+  fetch(url)
+    .then(function (response){
+      return response.json();
+    })
+    .then (function(data) {
+      gameData = data;
+      object.game = (gameData.data.names.international);
+      console.log(gameName);
+    });
 }
 
+function findCatName(object, url){
+  fetch(url)
+    .then(function (response){
+        return response.json();
+    })
+    .then (function(data) {
+        catData = data;
+        console.log(catData);
+        object.category = (catData.data.name);
+        // searchArrayReturn.push(object)
+    });
+}
 
-
-//function to convert time to hrs/mins/seconds  
+//CONVERTS TIME TO hrs/mins/seconds
 function toTime(object, seconds){
-    var retime = ''
-    var date = new Date(null);
-    date.setSeconds(seconds);
-    retime = date.toISOString().substr(11, 8);
+  var retime = ''
+  var date = new Date(null);
+  date.setSeconds(seconds);
+  retime = date.toISOString().substr(11, 8);
 //if hrs = 0, only show mins/seconds
-    if(retime.substr(0,3) == '00:'){
-      retime2 = retime.substr(3,retime.length)
-      object.time = retime2
-    }
-    else object.time = retime 
+  if(retime.substr(0,3) == '00:'){
+    retime2 = retime.substr(3,retime.length)
+    object.time = retime2
+  }
+  else object.time = retime 
     
 };
 
+// BUILDS THE RESULTS BOX
 function displayResults() {
   var searchResultsContainer = document.getElementById("search-results");
   var resultsTitleBarEl = document.getElementById("results-title-bar");
@@ -280,7 +247,6 @@ function displayResults() {
   // SETTING UP AND DISPLAYING ROWS OF RESULTS (the entire for-loop)
   var runCounter = Math.min(searchArrayReturn.length,5)
   
-
   for (i=0; i<runCounter; i++) {
     let row = document.createElement('tr');
     let name = document.createElement('td');
@@ -323,15 +289,14 @@ function displayResults() {
   createButtonEl.textContent = "Make " + searchArrayReturn[0].name + " a Favorite";
   createButtonEl.classList.add("btn-primary", "favBtn");
   createButtonEl.id = 'favBtn';
-  // resultsTitleBarEl.append(createButtonEl);
   searchResultsContainer.append(createButtonEl);
   
   // DISPLAY THE TABLE
   searchResultsContainer.appendChild(table);
 };
 
-// var resultsTitleBarEl = document.getElementById("results-title-bar");
 var createButtonEl = document.createElement('button');
+
 
 // MODAL for ERRORS
 function showErrorModal () {errorInputModal.toggle();}
@@ -340,13 +305,14 @@ var errorInputModal = new bootstrap.Modal(document.getElementById('bad-input-mod
 function showNoRunsModal () {noRunsModal.toggle();};
 var noRunsModal = new bootstrap.Modal(document.getElementById('no-runs-for-user'));
 
+
 // LOCAL STORAGE
 
 // USER STORAGE of RECENT SEARCHES
 var storedSearches = JSON.parse(localStorage.getItem("lsStoredRunnerSearches")) || [];
 var mostRecentSearch = localStorage.getItem("lsMostRecentRunnerSearch");
 
-// HTML Elements Reference
+// HTML REFERENCE OF THE FAVORITE BUTTONS AND VAULES
 var savedFavoriteButton1El = document.getElementById("fav1-btn");
 var savedFavoriteButton2El = document.getElementById("fav2-btn");
 var savedFavoriteButton3El = document.getElementById("fav3-btn");
@@ -414,6 +380,7 @@ function displaySearchHistory () {
   updateFavorites();
 };
 
+
 // SEARCH BUTTON EVENT LISTENER
 btnEl.addEventListener('click',createURL);
 
@@ -455,10 +422,6 @@ function showRandomActivity () {
 }
 
 function showQuote(){
-  // var quoteEl = document.createElement('h3')
-  // quoteEl.textContent = quoteData.quote + " - " + quoteData.author;
-  // var searchResultsContainer = document.getElementById("search-results");
-  // searchResultsContainer.append(quoteEl);
   quoteEl.textContent = quoteData.quote;
   authorEl.textContent = "-- " + quoteData.author;
 }
@@ -477,6 +440,8 @@ function fetchAndShowQuote(){
   .then(showQuote);
 };
 
+
+// FUNCTIONS RUN ON PAGE-LOAD
 fetchAndShowRandomActivity();
 fetchAndShowQuote();
 displaySearchHistory();
