@@ -21,4 +21,4 @@ Users can save a runner as a favorite which will create a button
 If the button is clicked, the search can be rerun at any time
 
 # The Website
-https://picks6.github.io/speedrun-spectator-DevZ/
+https://kbailey-95.github.io/speed-run-spectator/
