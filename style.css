@@ -126,7 +126,12 @@ transition: all 0.3s ease-in-out;
 
 .footer {
     height: 8vh;
-    background-color: #ff00f2;
+    color: white;
+    font-style: italic;
+    background-image:linear-gradient(
+        -225deg,
+        #0004df 29%,
+        #0000ff  );
     /* border-radius: 0; */
     border-top: 10px solid black;
 }
@@ -167,3 +172,10 @@ transition: all 0.3s ease-in-out;
         font-size: 12px;    
     }
 }
+
+.quote{
+    font-family: 'Anaheim';
+    font-size: 18px;
+
+}
+

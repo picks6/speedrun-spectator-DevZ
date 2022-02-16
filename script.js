@@ -452,8 +452,10 @@ function showRandomActivity () {
 function createQuote(){
   var quoteEl = document.createElement('h3')
   quoteEl.textContent = quoteData.quote + " - " + quoteData.author;
-  var searchResultsContainer = document.getElementById("search-results");
-  searchResultsContainer.append(quoteEl);
+  var footer = document.getElementById("footer");
+  footer.innerHTML = ''
+  footer.append(quoteEl);
+  quoteEl.classList.add('quote');
 }
 
 function showQuote(){
