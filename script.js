@@ -216,6 +216,7 @@ function displayResults() {
   
   // SEARCH RESULTS HEADER
   searchResultsHeader.innerHTML = "Search Results: " + searchArrayReturn[0].name;
+  searchResultsHeader.classList.add("fw-bold");
 
   // TABLE-BUILDING BEGINS
   let table = document.createElement('table');
@@ -423,6 +424,7 @@ function fetchQuote(){
 function createQuote(){
   var quoteEl = document.createElement('h3')
   quoteEl.textContent = quoteData.quote + " - " + quoteData.author;
+  quoteEl.id = 'quote'
   var searchResultsContainer = document.getElementById("search-results");
   searchResultsContainer.append(quoteEl);
   
