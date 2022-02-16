@@ -10,9 +10,16 @@ body {
 
 h1{
     font-weight: bolder;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: font-family: 'Bungee Shade', cursive;
     position: relative;
     font-size: 48px; 
+}
+
+
+.navbar-nav:hover {
+ background: teal;
+ text-transform: uppercase;
+
 }
 
 .header {
@@ -54,6 +61,7 @@ h1{
 .description{
     display: flex;
     flex-direction: row;
+
 }
 
 .jumbotron {
@@ -61,6 +69,7 @@ h1{
     background-color: transparent;
     border-radius: 0;
     border-bottom: 10px solid black;
+    font-family: 'Bungee Shade', cursive;
     color: white;
     height: 40vh;
     position: relative;
@@ -109,3 +118,18 @@ opacity: 100%;
 font-size: 20px;
 transition: all 0.3s ease-in-out;
 }
+.glow {
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+    }
+    
+    @-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px white 0 0 20px white, 0 0 30px #FF9966, 0 0 40px #FF9966, 0 0 50px #FF9966, 0 0 60px #FF9966, 0 0 70px #FF9966;
+  }
+  
+  to {
+    text-shadow: 0 0 20px white, 0 0 30px #FFA64D, 0 0 40px #FFA64D, 0 0 50px #FFA64D, 0 0 60px #FFA64D, 0 0 70px #FFA64D, 0 0 80px #FFA64D;
+  }
