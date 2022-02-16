@@ -8,6 +8,7 @@
 body {
     background-color: #d9dcd6;
     font-family: 'Anaheim';
+    line-height: 1;
 }
 
 h1 {
@@ -29,7 +30,7 @@ h1 {
     border-bottom: 10px solid black;
     font-family: 'Zen Dots' 'Bungee Shade', cursive;
     color: white;
-    height: 45vh;
+    height: 35vh;
     /* position: relative; */
     justify-content: center;
     -webkit-background-size: cover;
@@ -83,33 +84,40 @@ h1 {
     width: 40vw;
 }
 
-.search-container {
-      width:100%;
-      display: flex;
-      flex-direction: row;
-      position: relative;
-      background-color: lightgray;
-      margin-bottom: 10vh;
+#search-container {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: lightgray;
+    /* margin-bottom: 10vh; */
 }
 .search-results {
-    height: 50vh;
+    height: auto;
     border: 2px solid black;
     justify-content: center;
 }
 
-.favorite-runners {
+#favorites-container {
+    height: auto;
+    border: 2px solid black;
+    justify-content: center;
+}
+
+/* .favorite-runners {
     position: relative;
     display: flex;
     border: 2px solid black;
     height: 50vh
-}
+} */
 
 .followLinkBtn {
 border-left: 1px solid black;
-border-top-right-radius: 15px;
-border-bottom-right-radius: 15px;
+/* border-top-right-radius: 15px; */
+/* border-bottom-right-radius: 15px; */
+border-radius: 15px;
 opacity: 50%;
-background-color: #06aed5;
+background-color: #00ff22;
 color: white;
 width: 40px;
 }
@@ -125,6 +133,8 @@ transition: all 0.3s ease-in-out;
 }
 
 .footer {
+    height: auto;
+    background-color: #ff00f2;
     height: 8vh;
     color: white;
     font-style: italic;
@@ -133,8 +143,10 @@ transition: all 0.3s ease-in-out;
         #0004df 29%,
         #0000ff  );
     /* border-radius: 0; */
-    border-top: 10px solid black;
+    border-top: 5px solid black;
+    padding-top: 3px;
 }
+
 .info-what{
     margin:5px;
     font-size:22px;
