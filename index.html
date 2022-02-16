@@ -11,6 +11,7 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Anaheim&family=Zen+Dots&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <title>Speedrun Spectator</title>
   </head>
@@ -33,9 +34,9 @@
       </div>
     </nav> -->
 
-    <header class="jumbotron" >
+    <header class="header sticky-top">
       <h1 class="moving-title">The Speedrun Spectator</h1>
-      <div class = 'subhead-text'> ...the only page fast enough to track your favorite runners. </div>
+      <div class ="subhead-text"> ...the only page fast enough to track your favorite runners. </div>
     </header>
     
     <main>
@@ -54,23 +55,18 @@
         </div>
       </div>
 
-      <div id = "search-field" class = "col-12 search-field">
-        <div class="input-group">
-          <div class="form-outline">
-            <input type="search" id="form1" placeholder = 'User Search' class="form-control" />
-            <label class="form-label" for="form1"></label>
-          </div>
-          <button id = "searchBtn" type="button" class="btn btn-primary my-auto">
-            <i class="fas fa-search"> Search</i>
-          </button>
+      <div id = "search-field" class="input-container d-flex justify-content-center align-items-center flex-column">
+        <div class="input-group mb-3">
+          <input id="form1" type="text" class="form-control" placeholder="SpeedRun.com username here" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <button id="searchBtn" class="btn btn-outline-primary" type="button" id="button-addon2">Search</button>
         </div>
       </div>
       
-      <div id ='bottom-container' class = 'bottom-container'>
+      <div id ="search-container" class = "search-container">
         <div id = "search-results" class="col-9 search-results"> 
           <h2 id="search-results-header"></h2>
           <table id="search-results-table"></table>
-        </div>    
+        </div>
         <div id="favorites-container" class="col-3 container-sm">
             <h2>My favorites:</h2>
             <button id="fav1-btn" type="button" class="btn col-12 btn-outline-primary"><span id="fav1-txt"></span></button>
@@ -83,6 +79,10 @@
             <button id="fav8-btn" type="button" class="btn col-12 btn-outline-primary"><span id="fav8-txt"></span></button>
         </div>
       </div>
+
+      <footer class="footer fixed-bottom">
+
+      </footer>
 
       <!-- MODAL for bad-input -->
       <div class="modal fade" id="bad-input-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
