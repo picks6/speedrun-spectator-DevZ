@@ -57,15 +57,17 @@
 
       <div id = "search-field" class="input-container d-flex justify-content-center align-items-center flex-column">
         <div class="input-group mb-3">
-          <input id="form1" type="text" class="form-control" placeholder="SpeedRun.com username here" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <input id="form1" type="text" class="form-control" placeholder="SpeedRun.com username" aria-label="Recipient's username" aria-describedby="button-addon2">
           <button id="searchBtn" class="btn btn-outline-primary" type="button" id="button-addon2">Search</button>
         </div>
       </div>
       
       <div id ="search-container" class = "search-container">
-        <div id = "search-results" class="col-9 search-results"> 
-          <h2 id="search-results-header"></h2>
-          <table id="search-results-table"></table>
+        <div id = "search-results" class="col-9 search-results">
+          <div id="results-title-bar">
+            <h2 id="search-results-header"></h2>
+          </div>
+          <!-- <table id="search-results-table"></table> -->
         </div>
         <div id="favorites-container" class="col-3 container-sm">
             <h2>My favorites:</h2>
@@ -80,8 +82,18 @@
         </div>
       </div>
 
-      <footer class="footer fixed-bottom">
-
+      <footer class="footer d-flex flex-row align-items-center justify-content-center">
+        <div id="quote-section" class="text-center col-4 mx-5">
+          <p id="quote"></p>
+          <p id="author"></p>
+        </div>
+        <div id="team-name" class="col-3">
+          <h6 class="text-center"><i class="fa fa-coffee"></i> The Coolest Beans, 2022</h6>
+          <p class="text-center"><i class="fa fa-arrow-left"></i> <i class="fa fa-hands"></i>  Need Inspiration?<br>Need a Distraction?  <i class="fa fa-walking"></i> <i class="fa fa-arrow-right"></i> </p>
+        </div>
+        <div id="activity-section" class="text-center col-4 mx-5">
+          <p id="activity"></p>
+        </div>
       </footer>
 
       <!-- MODAL for bad-input -->

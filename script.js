@@ -174,7 +174,6 @@ function findUser(url) {
       })
       .then(function() {
         userInfoFetch(newFetchUrl);
-        createQuote();
         return;  
       });
   };
@@ -225,6 +224,7 @@ function toTime(object, seconds){
 
 function displayResults() {
   var searchResultsContainer = document.getElementById("search-results");
+  var resultsTitleBarEl = document.getElementById("results-title-bar");
   var searchInputEl = document.querySelector("#form1");
   var userNameSearch = searchInputEl.value;
   // RESET RESULTS BOX TO BLANK
@@ -234,7 +234,7 @@ function displayResults() {
   if (searchArrayReturn[0] == null || searchArrayReturn[0] == undefined) {
     console.log("user has no runs");
     showNoRunsModal();
-    //createQuote();
+    //fetchQuote();
     return;
   }
   
@@ -318,18 +318,19 @@ function displayResults() {
     row.appendChild(run_link);
     tbody.appendChild(row);
   }
-
+  
   //create favorite button
-  createButtonEl.textContent = "Favorite";
-  createButtonEl.classList.add("btn-primary", "favBtn","col-3");
+  createButtonEl.textContent = "Make " + searchArrayReturn[0].name + " a Favorite";
+  createButtonEl.classList.add("btn-primary", "favBtn");
   createButtonEl.id = 'favBtn';
-  
-  
-  searchResultsContainer.appendChild(table);
+  // resultsTitleBarEl.append(createButtonEl);
   searchResultsContainer.append(createButtonEl);
-  createQuote();
+  
+  // DISPLAY THE TABLE
+  searchResultsContainer.appendChild(table);
 };
 
+// var resultsTitleBarEl = document.getElementById("results-title-bar");
 var createButtonEl = document.createElement('button');
 
 // MODAL for ERRORS
@@ -430,11 +431,13 @@ savedFavoriteButton7El.onclick = function () {userName = storedSearches[6]; sear
 savedFavoriteButton8El.onclick = function () {userName = storedSearches[7]; searchInputEl = storedSearches[7]; searchFromFavorite();}
 
 
-// 3rd API USE ... RANDOM ACTIVITY GENERATOR, LOL.
-var randomActivity
-var activityEl = document.getElementById("activity")
+// 2nd and 3rd API USE
+var randomActivity;
+var activityEl = document.getElementById("activity");
+var quoteEl = document.getElementById("quote");
+var authorEl = document.getElementById("author");
 
-function fetchRandomActivity () {
+function fetchAndShowRandomActivity () {
   fetch("https://www.boredapi.com/api/activity")
   .then(response => {
     return response.json();
@@ -444,29 +447,36 @@ function fetchRandomActivity () {
     console.log(randomActivity);
     return
   })
+  .then(showRandomActivity);
 }
+
 function showRandomActivity () {
   activityEl.textContent = randomActivity.activity;
 }
 
-function createQuote(){
-  var quoteEl = document.createElement('h3')
-  quoteEl.textContent = quoteData.quote + " - " + quoteData.author;
-  var searchResultsContainer = document.getElementById("search-results");
-  searchResultsContainer.append(quoteEl);
+function showQuote(){
+  // var quoteEl = document.createElement('h3')
+  // quoteEl.textContent = quoteData.quote + " - " + quoteData.author;
+  // var searchResultsContainer = document.getElementById("search-results");
+  // searchResultsContainer.append(quoteEl);
+  quoteEl.textContent = quoteData.quote;
+  authorEl.textContent = "-- " + quoteData.author;
 }
 
-function showQuote(){
+function fetchAndShowQuote(){
   fetch("https://free-quotes-api.herokuapp.com/") 
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
+    console.log(data.author)
+    console.log(data.quote)
     quoteData.author = data.author;
     quoteData.quote = data.quote;
   })
+  .then(showQuote);
 };
 
-fetchRandomActivity();
+fetchAndShowRandomActivity();
+fetchAndShowQuote();
 displaySearchHistory();
-showQuote();
