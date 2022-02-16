@@ -23,7 +23,7 @@ h1 {
     justify-items:center;
     align-items:center;
     text-align: center;
-    background: url("./speedrun-bg-sonic.png") center center no-repeat;
+    background: url("./speedrun-bg-sonic-edit.png") center center no-repeat;
     border-radius: 0;
     border-bottom: 10px solid black;
     font-family: 'Bungee Shade', cursive;
@@ -78,11 +78,6 @@ h1 {
     /* flex-direction: row; */
 }
 
-/* .input-container {
-    justify-content: center;
-    align-items: center;
-} */
-
 .input-group {
     width: 40vw;
 }
@@ -93,6 +88,7 @@ h1 {
       flex-direction: row;
       position: relative;
       background-color: lightgray;
+      margin-bottom: 10vh;
 }
 .search-results {
     height: 50vh;
