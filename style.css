@@ -134,9 +134,7 @@ transition: all 0.3s ease-in-out;
 
 .footer {
     height: auto;
-    /* background-color: #ff00f2; */
-    background-image: linear-gradient(to right #000eff, #001DEC);
-    color: white;
+    background-color: #ff81f9;
     /* border-radius: 0; */
     border-top: 5px solid black;
     padding-top: 3px;
