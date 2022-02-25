@@ -1,4 +1,6 @@
 # The Speedrun Spectator
+Link to the Speedrun Spectator:  https://patrickfham.github.io/SpeedRunSpectator/
+
 Accessing the speedrun.com API to keep track of your favorite speedgames and speedrunners
 
 # User Stories
@@ -20,6 +22,3 @@ If a user has fewer than 5 submitted runs, it will return all runs
 Users can save a runner as a favorite which will create a button
 If the button is clicked, the search can be rerun at any time
 Inspirational quotes will populate on search
-
-# The Website
-https://patrickfham.github.io/SpeedRunSpectator/
