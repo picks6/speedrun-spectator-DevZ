@@ -22,4 +22,4 @@ If the button is clicked, the search can be rerun at any time
 Inspirational quotes will populate on search
 
 # The Website
-https://picks6.github.io/speedrun-spectator-DevZ/
+https://patrickfham.github.io/SpeedRunSpectator/
