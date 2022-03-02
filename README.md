@@ -23,9 +23,9 @@ If the button is clicked, the search can be rerun at any time
 Inspirational quotes will populate on search
 
 # Technologies Used
-SpeedRun.com API: https://github.com/speedruncomorg/api 
-BoredAPI: https://www.boredapi.com/api/activity 
-FreeQuotesAPI: https://free-quotes-api.herokuapp.com/ 
+[SpeedRun.com API](https://github.com/speedruncomorg/api)
+[BoredAPI](https://www.boredapi.com/api/activity)
+[FreeQuotesAPI](https://free-quotes-api.herokuapp.com)
 HTML/CSS/Bootstrap 
 JavaScript 
 jQuery 
