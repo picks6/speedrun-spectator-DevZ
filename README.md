@@ -1,6 +1,6 @@
 # The Speedrun Spectator
-"The Only Page Fast Enough to Track Your Favorite Runners"
-Link to the Speedrun Spectator:  https://patrickfham.github.io/SpeedRunSpectator/
+- "The Only Page Fast Enough to Track Your Favorite Runners"
+- Link to the Speedrun Spectator:  https://patrickfham.github.io/SpeedRunSpectator/
 
 ## User Stories
 - As a fan of speedrunning, I want to see the newest runs from my favorite players.
