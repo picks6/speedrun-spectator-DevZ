@@ -21,12 +21,6 @@ Users can save a runner as a favorite which will create a button
 If the button is clicked, the search can be rerun at any time
 Inspirational quotes will populate on search
 
-# Technologies Used
-HTML
-CSS
-Bootstrap
-Jquery
-Javascript
 
 # The Website
 https://picks6.github.io/speedrun-spectator-DevZ/
